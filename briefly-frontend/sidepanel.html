@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Briefly - Research Assistant</title>
+    <link rel="stylesheet" href="sidepanel.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2><i class="fas fa-book-reader"></i> Briefly</h2>
+        <div class="theme-toggle">
+          <input type="checkbox" id="darkModeToggle" class="toggle-checkbox" />
+          <label for="darkModeToggle" class="toggle-label">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <span class="toggle-ball"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="summarizeBtn" class="btn primary">
+          <i class="fas fa-compress-alt"></i> Summarize
+        </button>
+      </div>
+
+      <div id="results"></div>
+
+      <div class="notes">
+        <div class="notes-header">
+          <h3><i class="fas fa-pen"></i> Research Notes</h3>
+          <div class="notes-actions">
+            <button
+              id="clearNotesBtn"
+              class="btn secondary"
+              title="Clear notes"
+            >
+              <i class="fas fa-eraser"></i> Clear
+            </button>
+            <button
+              id="exportNotesBtn"
+              class="btn secondary"
+              title="Export notes as .txt"
+            >
+              <i class="fas fa-file-export"></i> Export
+            </button>
+          </div>
+        </div>
+        <textarea id="notes" placeholder="Take notes here..."></textarea>
+      </div>
+    </div>
+    <script src="sidepanel.js"></script>
+  </body>
+</html>
