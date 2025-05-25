@@ -1,4 +1,4 @@
-# AI Text Summarizer Extension
+# Briefly
 
 This is a basic Chrome Extension that lets you select text on any webpage and get a summary using AI. It sends the selected text to a local Spring Boot server, which returns the summary.
 
@@ -7,7 +7,7 @@ This is a basic Chrome Extension that lets you select text on any webpage and ge
 - You select some text on a webpage.
 - Click the "Summarize" button in the extension popup.
 - It shows a loading animation while sending the text to the backend.
-- The summary is shown inside the popup.
+- The summary is shown inside the Text area.
 - You can copy it easily using the copy button.
 
 ## Tech used
