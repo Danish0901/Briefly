@@ -29,6 +29,6 @@ This is a basic Chrome Extension that lets you select text on any webpage and ge
 
 - Dark mode toggle is available.
 - The extension doesn’t save summaries right now.
-- There's a feature to export notes if added back later.
+- There's a feature to export notes.
 
 
