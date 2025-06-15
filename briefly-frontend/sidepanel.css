@@ -187,7 +187,6 @@ body {
   gap: 8px;
 }
 
-/* Theme Toggle Styles */
 .theme-toggle {
   position: relative;
 }
@@ -244,7 +243,7 @@ body {
   background-color: var(--primary-color);
 }
 
-/* Notification styling */
+
 .notification {
   position: fixed;
   bottom: 20px;

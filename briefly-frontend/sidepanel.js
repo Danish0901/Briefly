@@ -1,14 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Load only theme preference
   chrome.storage.local.get(["darkMode"], function (result) {
-    // Set theme based on saved preference
     if (result.darkMode) {
       document.documentElement.setAttribute("data-theme", "dark");
       document.getElementById("darkModeToggle").checked = true;
     }
   });
 
-  // Event listeners
   document
     .getElementById("summarizeBtn")
     .addEventListener("click", summarizeText);
@@ -40,7 +37,6 @@ async function summarizeText() {
       return;
     }
 
-    // Show loading indicator
     showResult(
       `<div class="loading">Summarizing content<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div>`
     );
@@ -57,7 +53,6 @@ async function summarizeText() {
 
     const text = await response.text();
 
-    // Generate a unique ID for this summary
     const summaryId = "summary_" + Date.now();
 
     showResult(`
@@ -72,7 +67,6 @@ async function summarizeText() {
       </div>
     `);
 
-    // Add event listener to the copy button
     document.querySelectorAll(".copy-btn").forEach((btn) => {
       btn.addEventListener("click", function () {
         const targetId = this.getAttribute("data-target");
@@ -87,8 +81,6 @@ async function summarizeText() {
     showNotification(error.message, "error");
   }
 }
-
-// Save notes functionality removed
 
 function clearNotes() {
   const notes = document.getElementById("notes");
@@ -108,21 +100,17 @@ function exportNotes() {
     return;
   }
 
-  // Create a Blob with the text content
   const blob = new Blob([notes], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
 
-  // Create a temporary download link
   const downloadLink = document.createElement("a");
   downloadLink.href = url;
   downloadLink.download = `research_notes_${formatDate()}.txt`;
 
-  // Append to the DOM, click it, and remove it
   document.body.appendChild(downloadLink);
   downloadLink.click();
   document.body.removeChild(downloadLink);
 
-  // Clean up the URL object
   URL.revokeObjectURL(url);
 
   showNotification("Notes exported successfully");
@@ -137,7 +125,6 @@ function toggleDarkMode() {
     document.documentElement.removeAttribute("data-theme");
   }
 
-  // Save preference
   chrome.storage.local.set({ darkMode: isDarkMode });
 }
 
@@ -157,17 +144,14 @@ function copyToClipboard(text) {
 }
 
 function showNotification(message, type = "success") {
-  // Check if a notification already exists and remove it
   const existingNotification = document.querySelector(".notification");
   if (existingNotification) {
     document.body.removeChild(existingNotification);
   }
 
-  // Create new notification element
   const notification = document.createElement("div");
   notification.className = `notification ${type}`;
 
-  // Add icon based on notification type
   const icon = type === "success" ? "check-circle" : "exclamation-circle";
 
   notification.innerHTML = `
@@ -175,15 +159,12 @@ function showNotification(message, type = "success") {
     <span>${message}</span>
   `;
 
-  // Add to body
   document.body.appendChild(notification);
 
-  // Show notification
   setTimeout(() => {
     notification.classList.add("show");
   }, 10);
 
-  // Hide after 3 seconds
   setTimeout(() => {
     notification.classList.remove("show");
     setTimeout(() => {
@@ -193,7 +174,6 @@ function showNotification(message, type = "success") {
     }, 300);
   }, 3000);
 
-  // Also send to background script for system notification
   chrome.runtime.sendMessage({
     action: "notify",
     message: message,
@@ -207,7 +187,6 @@ function formatDate() {
     .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
 }
 
-// Add loading animation
 setInterval(() => {
   const dots = document.querySelectorAll(".dot");
   if (dots.length > 0) {
